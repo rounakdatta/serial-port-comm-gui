@@ -1,0 +1,8 @@
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\bin\Debug\STRING_PARSER.exe
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\bin\Debug\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.exe
+C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
