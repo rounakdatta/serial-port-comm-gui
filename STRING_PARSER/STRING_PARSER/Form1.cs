@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Threading;
 
 namespace WindowsFormsApplication1
 {
@@ -22,6 +23,13 @@ namespace WindowsFormsApplication1
             Send_Button.Enabled = false;
             Receive_Button.Enabled = false;
         }
+
+        /*static class serial
+        {
+            //public static string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
+            //int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
+            //public static SerialPort COMport = new SerialPort(Port_Name, Baud_Rate);
+        }*/
 
         public string checksum(string a) //checksum function
         {
@@ -106,19 +114,21 @@ namespace WindowsFormsApplication1
 
                 string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
                 int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
-                string var_e = e_Field.Text; //the variable e
-                string var_M = M_Field.Text; // the varaiable M
 
                 SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
+
+                COMport.DtrEnable = false;
+
                 COMport.Open();
+
+                Thread.Sleep(300);
 
                 if (COMport.IsOpen == true)
                 {
-                    COMport.WriteLine(var_e);
-                    COMport.WriteLine(var_M);
+                    COMport.WriteLine(cval);
 
                     COMport.Close();
-                    Log_Box.Text = "Written to PORT " + Port_Name;
+                    //Log_Box.Text = "Written to PORT " + Port_Name;
                     Receive_Button.Enabled = true;
                 }
 
@@ -158,6 +168,7 @@ namespace WindowsFormsApplication1
             e_Field.Enabled = true;
             M_Field.Enabled = true;
             Log_Box.Text = Get_BR.SelectedItem.ToString() + " bps selected";
+
         }
 
     }

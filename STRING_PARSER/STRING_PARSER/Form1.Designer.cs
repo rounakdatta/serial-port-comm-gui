@@ -45,6 +45,8 @@
             this.Label_BR = new System.Windows.Forms.Label();
             this.Get_Port = new System.Windows.Forms.ComboBox();
             this.Get_BR = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Health_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Label_e
@@ -206,11 +208,30 @@
             this.Get_BR.TabIndex = 16;
             this.Get_BR.SelectedIndexChanged += new System.EventHandler(this.Get_BR_SelectedIndexChanged);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 216);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(179, 80);
+            this.textBox1.TabIndex = 17;
+            // 
+            // Health_Button
+            // 
+            this.Health_Button.Location = new System.Drawing.Point(197, 216);
+            this.Health_Button.Name = "Health_Button";
+            this.Health_Button.Size = new System.Drawing.Size(75, 80);
+            this.Health_Button.TabIndex = 18;
+            this.Health_Button.Text = "GET HEALTH";
+            this.Health_Button.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 366);
+            this.Controls.Add(this.Health_Button);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Get_BR);
             this.Controls.Add(this.Get_Port);
             this.Controls.Add(this.Label_BR);
@@ -254,6 +275,8 @@
         private System.Windows.Forms.Label Label_BR;
         private System.Windows.Forms.ComboBox Get_Port;
         private System.Windows.Forms.ComboBox Get_BR;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button Health_Button;
     }
 }
 
