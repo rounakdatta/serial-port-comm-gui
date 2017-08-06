@@ -115,6 +115,8 @@ namespace WindowsFormsApplication1
                 string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
                 int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
 
+                string feedback = "";
+
                 SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
 
                 COMport.DtrEnable = false;
@@ -123,14 +125,35 @@ namespace WindowsFormsApplication1
 
                 Thread.Sleep(300);
 
-                if (COMport.IsOpen == true)
-                {
-                    COMport.WriteLine(cval);
+                    if (COMport.IsOpen == true)
+                    {
+                        COMport.WriteLine(cval);
 
-                    COMport.Close();
-                    //Log_Box.Text = "Written to PORT " + Port_Name;
-                    Receive_Button.Enabled = true;
-                }
+                        COMport.ReadTimeout = 3500;
+
+                        try
+                        {
+                            feedback = COMport.ReadLine();
+                            if (feedback[0] != '2')
+                            {
+                                Go_Button_Click(sender, e);
+                            }
+                        }
+                        catch (TimeoutException SerialTimeOutException)
+                        {
+                            MessageBox.Show("Feedback TimeOut!");
+                            MessageBox.Show(SerialTimeOutException.ToString());
+                        }
+
+                        COMport.Close();
+                        Log_Box.Text = "Written to PORT " + Port_Name;
+                        Receive_Button.Enabled = true;
+                    }
+                    else
+                    {
+                        Log_Box.Text = "Unable to write to PORT";
+                    }
+                
 
             }
             else
@@ -145,16 +168,56 @@ namespace WindowsFormsApplication1
 
         private void Process_Button_Click(object sender, EventArgs e)
         {
-            if (checksum(Log_Box.Text.Substring(0, 30)) == Log_Box.Text.Substring(0, 32)) //checksum validation
-            {
-                float x = (float)Convert.ToInt32(Log_Box.Text.Substring(1, 5)) / (float)10000; //extract first number
-                float y = (float)Convert.ToInt32(Log_Box.Text.Substring(6, 5)) / (float)10000; //extract second number
-                bige_Field.Text = (x + y).ToString(); //perform the operation and show on the A + B field
-            }
-            else
-            {
-                MessageBox.Show("Checksum failed"); //if checksum char(s) validation fails, show fail
-            }
+                string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
+                int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
+                string receive_data = "";
+
+                SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
+
+                COMport.DtrEnable = false;
+
+                COMport.ReadTimeout = 3500; //timeout time for reading is 3.5s
+
+                COMport.Open();
+
+                Thread.Sleep(300);
+
+                try
+                {
+                    if (COMport.IsOpen == true)
+                    {
+                        receive_data = COMport.ReadLine();
+
+                        if ((checksum(receive_data.Substring(0, 30)) == receive_data.Substring(0, 32)) && receive_data[0] =='4') //checksum validation
+                        {
+                            string feedback = "200000000000000000000000000000";
+                            feedback = checksum(feedback);
+                            COMport.WriteLine(feedback);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Checksum failed"); //if checksum char(s) validation fails, show fail
+                        }
+
+
+                        COMport.Close();
+                        Log_Box.Text = "Received from PORT " + Port_Name;
+                        Receive_Button.Enabled = true;
+                    }
+                }
+                catch (TimeoutException SerialTimeOutException)
+                {
+                    MessageBox.Show("Read TimeOut!");
+                    MessageBox.Show(SerialTimeOutException.ToString());
+                }
+
+
+                float x = (float)Convert.ToInt32(receive_data.Substring(1, 5)) / (float)10000; //extract first number
+                float y = (float)Convert.ToInt32(receive_data.Substring(6, 5)) / (float)10000; //extract second number
+                
+                th_Field.Text = x.ToString();
+                bige_Field.Text = y.ToString();
+            
         }
 
         private void Get_Port_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,6 +232,62 @@ namespace WindowsFormsApplication1
             M_Field.Enabled = true;
             Log_Box.Text = Get_BR.SelectedItem.ToString() + " bps selected";
 
+        }
+
+        private void Health_Button_Click(object sender, EventArgs e)
+        {
+            string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
+            int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
+
+            string feedback = "";
+
+            SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
+
+            COMport.DtrEnable = false;
+
+            COMport.Open();
+
+            Thread.Sleep(300);
+
+            if (COMport.IsOpen == true)
+            {
+                string reqh = "500000000000000000000000000000";
+                reqh = checksum(reqh);
+                COMport.WriteLine(reqh);
+
+                COMport.ReadTimeout = 3500;
+
+                try
+                {
+                    feedback = COMport.ReadLine();
+                    if (feedback[0] != '6' && (checksum(feedback.Substring(0, 30)) != feedback.Substring(0, 32)))
+                    {
+                        Health_Button_Click(sender, e);
+                    }
+                    else
+                    {
+                        string feedback2 = "20000000000000000000000000000000";
+                        COMport.WriteLine(feedback2);
+
+
+                        Time_Field.Text = feedback.Substring(0, 12);
+                        Health_Box.Text = feedback.Substring(12, 3) + "\n" + feedback.Substring(15, 3) + "\n" + feedback.Substring(18, 3) + "\n" + feedback.Substring(21, 3);
+                    }
+                }
+                catch (TimeoutException SerialTimeOutException)
+                {
+                    MessageBox.Show("Feedback TimeOut!");
+                    MessageBox.Show(SerialTimeOutException.ToString());
+                }
+
+                COMport.Close();
+                Log_Box.Text = "Written to PORT " + Port_Name;
+                Receive_Button.Enabled = true;
+            }
+            else
+            {
+                Log_Box.Text = "Unable to write to PORT";
+            }
         }
 
     }
