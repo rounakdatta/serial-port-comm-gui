@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             Get_Port.Items.AddRange(SerialPort.GetPortNames());
-            Get_BR.Enabled = true; //change this to 'false' at lab
+            Get_BR.Enabled = false; //change this to 'false' at lab
             e_Field.Enabled = false;
             M_Field.Enabled = false;
             Send_Button.Enabled = false;
@@ -26,9 +26,9 @@ namespace WindowsFormsApplication1
 
         /*static class serial
         {
-            //public static string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
-            //int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
-            //public static SerialPort COMport = new SerialPort(Port_Name, Baud_Rate);
+            public static string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
+            int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
+            public static SerialPort COMport = new SerialPort(Port_Name, Baud_Rate);
         }*/
 
         public string checksum(string a) //checksum function
@@ -115,7 +115,7 @@ namespace WindowsFormsApplication1
                 string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
                 int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
 
-                string feedback = "";
+                char[] feedback = new char[32];
 
                 SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
 
@@ -133,7 +133,8 @@ namespace WindowsFormsApplication1
 
                         try
                         {
-                            feedback = COMport.ReadLine();
+                            //feedback = COMport.ReadLine();
+                            COMport.Read(feedback, 0, 32);
                             if (feedback[0] != '2')
                             {
                                 Go_Button_Click(sender, e);
@@ -170,7 +171,8 @@ namespace WindowsFormsApplication1
         {
                 string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
                 int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
-                string receive_data = "";
+
+                char[] raw = new char[32];
 
                 SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
 
@@ -186,7 +188,10 @@ namespace WindowsFormsApplication1
                 {
                     if (COMport.IsOpen == true)
                     {
-                        receive_data = COMport.ReadLine();
+                        //receive_data = COMport.ReadLine();
+                        COMport.Read(raw, 0, 32);
+
+                        string receive_data = raw.ToString();
 
                         if ((checksum(receive_data.Substring(0, 30)) == receive_data.Substring(0, 32)) && receive_data[0] =='4') //checksum validation
                         {
@@ -211,9 +216,10 @@ namespace WindowsFormsApplication1
                     MessageBox.Show(SerialTimeOutException.ToString());
                 }
 
+                string received_data = raw.ToString();
 
-                float x = (float)Convert.ToInt32(receive_data.Substring(1, 5)) / (float)10000; //extract first number
-                float y = (float)Convert.ToInt32(receive_data.Substring(6, 5)) / (float)10000; //extract second number
+                float x = (float)Convert.ToInt32(received_data.Substring(1, 5)) / (float)10000; //extract first number
+                float y = (float)Convert.ToInt32(received_data.Substring(6, 5)) / (float)10000; //extract second number
                 
                 th_Field.Text = x.ToString();
                 bige_Field.Text = y.ToString();
@@ -239,7 +245,7 @@ namespace WindowsFormsApplication1
             string Port_Name = Get_Port.SelectedItem.ToString(); //get port name
             int Baud_Rate = Convert.ToInt32(Get_BR.SelectedItem); //get the baud rate
 
-            string feedback = "";
+            char[] feedbackchar = new char[32];
 
             SerialPort COMport = new SerialPort(Port_Name, Baud_Rate); //open a new serial port for the given port and baudrate
 
@@ -259,7 +265,9 @@ namespace WindowsFormsApplication1
 
                 try
                 {
-                    feedback = COMport.ReadLine();
+                    COMport.Read(feedbackchar, 0, 32);
+                    string feedback = feedbackchar.ToString();
+
                     if (feedback[0] != '6' && (checksum(feedback.Substring(0, 30)) != feedback.Substring(0, 32)))
                     {
                         Health_Button_Click(sender, e);
@@ -271,7 +279,7 @@ namespace WindowsFormsApplication1
 
 
                         Time_Field.Text = feedback.Substring(0, 12);
-                        Health_Box.Text = feedback.Substring(12, 3) + "\n" + feedback.Substring(15, 3) + "\n" + feedback.Substring(18, 3) + "\n" + feedback.Substring(21, 3);
+                        Health_Box.Text = feedback.Substring(10, 3) + "\n" + feedback.Substring(13, 3) + "\n" + feedback.Substring(16, 3) + "\n" + feedback.Substring(19, 3);
                     }
                 }
                 catch (TimeoutException SerialTimeOutException)
