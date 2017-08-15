@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="STRING_PARSER.exe" size="21504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="STRING_PARSER.exe" size="20992">
       <assemblyIdentity name="STRING_PARSER" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>1xLjztdilFK6XmuvD+Q2WXr3W4Q=</dsig:DigestValue>
+        <dsig:DigestValue>We/MUFIRT+31x2PwJ4GereIucxY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -6,3 +6,39 @@ C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STR
 C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.exe
 C:\Users\246 Bangur Park\documents\visual studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.pdb
 C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.exe
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.pdb
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\bin\Debug\STRING_PARSER.exe
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\bin\Debug\STRING_PARSER.pdb
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\user\Desktop\rk\STRING_PARSER\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\STRING_PARSER.exe
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\STRING_PARSER.pdb
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\user\Desktop\working\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\working\STRING_PARSER\bin\Debug\STRING_PARSER.exe
+C:\Users\user\Desktop\working\STRING_PARSER\bin\Debug\STRING_PARSER.pdb
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\STRING_PARSER.exe
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\STRING_PARSER.pdb
+C:\Users\Perseus\Desktop\STRING_PARSER\bin\Debug\STRING_PARSER.exe
+C:\Users\Perseus\Desktop\STRING_PARSER\bin\Debug\STRING_PARSER.pdb
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Perseus\Desktop\STRING_PARSER\obj\x86\Debug\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.exe
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Debug\STRING_PARSER.exe
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Debug\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.csprojResolveAssemblyReference.cache
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Debug\STRING_PARSER.exe.manifest
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Debug\STRING_PARSER.application
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.exe.manifest
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Debug\STRING_PARSER.application

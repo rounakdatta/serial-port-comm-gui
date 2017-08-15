@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +21,6 @@ namespace WindowsFormsApplication1
             Get_BR.Enabled = false; //change this to 'false' at lab
             e_Field.Enabled = false;
             M_Field.Enabled = false;
-            connect_button.Enabled = false;
             Send_Button.Enabled = false;
         } // ctor
 
@@ -69,9 +68,9 @@ namespace WindowsFormsApplication1
             {
                 COMport.Write(data, 0, len);
             }
-            catch (Exception E)
+            catch (Exception e)
             {
-                MessageBox.Show(E.ToString());
+                //MessageBox.Show(e.ToString());
                 return false;
             }
             return true;
@@ -152,7 +151,6 @@ namespace WindowsFormsApplication1
         {
             e_Field.Enabled = true;
             M_Field.Enabled = true;
-            connect_button.Enabled = true;
             Log_Box.Text = Get_BR.SelectedItem.ToString() + " bps selected";
         }
 
@@ -162,12 +160,8 @@ namespace WindowsFormsApplication1
             char[] feedbackchar = new char[32];
             if (COMport.IsOpen == true)
             {
-                string healthreq = "500000000000000000000000000000";
                 char[] reqh = new char[32];
-                for (int i = 0; i < 30; i++)
-                {
-                    reqh[i] = healthreq[i];
-                }
+                reqh = "500000000000000000000000000000".ToCharArray();
                 char[] ckval = new char[2];
 
 
@@ -190,6 +184,8 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show(ex.ToString());
                 }
+
+                COMport.ReadTimeout = 3500;
             }
             else
             {
@@ -215,9 +211,7 @@ namespace WindowsFormsApplication1
                 COMport.DiscardInBuffer();
             }
             catch (Exception E)
-            {
-                MessageBox.Show(E.ToString());
-            }
+            { }
         }
 
         private void parsePacket(string idata1)
@@ -227,87 +221,35 @@ namespace WindowsFormsApplication1
 
             if (idata1[0] == '4')
             {
-                //Splitting string into two parts 30 bytes and 2 bytes for checksum
-                char[] result1 = idata1.ToCharArray();
+                        //Splitting string into two parts 30 bytes and 2 bytes for checksum
+                        char[] result1 = idata1.ToCharArray();
 
 
-                // char[] rec2 = receive_data.Substring(30, 31).ToCharArray();
-                char[] new_result2 = new char[2];
+                        // char[] rec2 = receive_data.Substring(30, 31).ToCharArray();
+                        char[] new_result2 = new char[2];
 
 
-                //Again getting the checksum of received string
-                uint chkval = checksum(result1);
+                        //Again getting the checksum of received string
+                        uint chkval = checksum(result1);
 
-                chkval = chkval % 256;
-                new_result2[0] = int2hex(chkval / 16);
-                new_result2[1] = int2hex(chkval % 16);
+                        chkval = chkval % 256;
+                        new_result2[0] = int2hex(chkval / 16);
+                        new_result2[1] = int2hex(chkval % 16);
 
-                if ((new_result2[0] == result1[30] && new_result2[1] == result1[31])) //checksum validation
-                {
-                    float theta = float.Parse(idata1.Substring(1, 4)) / 1000;
-                    float Epsilon = float.Parse(idata1.Substring(7, 4)) / 1000;
+                        if ((new_result2[0] == result1[30] && new_result2[1] == result1[31])) //checksum validation
+                        {
+                            float theta = float.Parse(idata1.Substring(1, 4)) / 1000;
+                            float Epsilon = float.Parse(idata1.Substring(7, 4)) / 1000;
 
-                    th_Field.Text = theta.ToString();
-                    bige_Field.Text = Epsilon.ToString();
+                            th_Field.Text = theta.ToString();
+                            bige_Field.Text = Epsilon.ToString();
 
-
-                }
-                else
-                {
-                    MessageBox.Show("Checksum failed"); //if checksum char(s) validation fails, show fail
-                }
-
-
-                string feedback2 = "20000000000000000000000000000027";
-                char[] fee = feedback2.ToCharArray();
-
-                try
-                {
-                    Thread.Sleep(300);
-                    COMport.Write(fee, 0, 32);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                }
-
-            }
-
-            if (idata1[0] == '6')
-            {
-                //Splitting string into two parts 30 bytes and 2 bytes for checksum
-                char[] result1 = idata1.ToCharArray();
-
-
-                // char[] rec2 = receive_data.Substring(30, 31).ToCharArray();
-                char[] new_result2 = new char[2];
-
-
-                //Again getting the checksum of received string
-                uint chkval = checksum(result1);
-
-                chkval = chkval % 256;
-                new_result2[0] = int2hex(chkval / 16);
-                new_result2[1] = int2hex(chkval % 16);
-
-                if ((new_result2[0] == result1[30] && new_result2[1] == result1[31])) //checksum validation
-                {
-                    int param1 = int.Parse(idata1.Substring(13, 3));
-                    int param2 = int.Parse(idata1.Substring(13, 3));
-                    int param3 = int.Parse(idata1.Substring(13, 3));
-                    int param4 = int.Parse(idata1.Substring(13, 3));
-
-                    Health_Box.Text += (param1.ToString() + " ");
-                    Health_Box.Text += (param2.ToString() + " ");
-                    Health_Box.Text += (param3.ToString() + " ");
-                    Health_Box.Text += (param4.ToString() + " ");
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Checksum failed"); //if checksum char(s) validation fails, show fail
-                }
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("Checksum failed"); //if checksum char(s) validation fails, show fail
+                        }
 
 
                 string feedback2 = "20000000000000000000000000000027";
@@ -369,7 +311,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
                 return false;
             }
 

@@ -37,7 +37,6 @@
             this.Label_bige = new System.Windows.Forms.Label();
             this.Send_Button = new System.Windows.Forms.Button();
             this.Log_Box = new System.Windows.Forms.TextBox();
-            this.Receive_Button = new System.Windows.Forms.Button();
             this.note1 = new System.Windows.Forms.Label();
             this.note2 = new System.Windows.Forms.Label();
             this.Label_th = new System.Windows.Forms.Label();
@@ -50,6 +49,8 @@
             this.Health_Button = new System.Windows.Forms.Button();
             this.Time_Field = new System.Windows.Forms.TextBox();
             this.Last_Update = new System.Windows.Forms.Label();
+            this.connect_button = new System.Windows.Forms.Button();
+            this.flushbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Label_e
@@ -124,16 +125,6 @@
             this.Log_Box.Size = new System.Drawing.Size(260, 20);
             this.Log_Box.TabIndex = 7;
             // 
-            // Receive_Button
-            // 
-            this.Receive_Button.Location = new System.Drawing.Point(184, 163);
-            this.Receive_Button.Name = "Receive_Button";
-            this.Receive_Button.Size = new System.Drawing.Size(75, 23);
-            this.Receive_Button.TabIndex = 8;
-            this.Receive_Button.Text = "RECEIVE";
-            this.Receive_Button.UseVisualStyleBackColor = true;
-            this.Receive_Button.Click += new System.EventHandler(this.Process_Button_Click);
-            // 
             // note1
             // 
             this.note1.AutoSize = true;
@@ -170,6 +161,7 @@
             this.th_Field.ReadOnly = true;
             this.th_Field.Size = new System.Drawing.Size(100, 20);
             this.th_Field.TabIndex = 12;
+            this.th_Field.TextChanged += new System.EventHandler(this.th_Field_TextChanged);
             // 
             // Label_Port
             // 
@@ -183,7 +175,7 @@
             // Label_BR
             // 
             this.Label_BR.AutoSize = true;
-            this.Label_BR.Location = new System.Drawing.Point(190, 20);
+            this.Label_BR.Location = new System.Drawing.Point(114, 21);
             this.Label_BR.Name = "Label_BR";
             this.Label_BR.Size = new System.Drawing.Size(69, 13);
             this.Label_BR.TabIndex = 14;
@@ -205,7 +197,7 @@
             "4800",
             "9600",
             "115200"});
-            this.Get_BR.Location = new System.Drawing.Point(193, 36);
+            this.Get_BR.Location = new System.Drawing.Point(118, 36);
             this.Get_BR.Name = "Get_BR";
             this.Get_BR.Size = new System.Drawing.Size(61, 21);
             this.Get_BR.TabIndex = 16;
@@ -246,11 +238,33 @@
             this.Last_Update.TabIndex = 20;
             this.Last_Update.Text = "LAST UPDATED :";
             // 
+            // connect_button
+            // 
+            this.connect_button.Location = new System.Drawing.Point(197, 36);
+            this.connect_button.Name = "connect_button";
+            this.connect_button.Size = new System.Drawing.Size(75, 23);
+            this.connect_button.TabIndex = 21;
+            this.connect_button.Text = "CONNECT";
+            this.connect_button.UseVisualStyleBackColor = true;
+            this.connect_button.Click += new System.EventHandler(this.connect_button_Click_1);
+            // 
+            // flushbutton
+            // 
+            this.flushbutton.Location = new System.Drawing.Point(197, 163);
+            this.flushbutton.Name = "flushbutton";
+            this.flushbutton.Size = new System.Drawing.Size(75, 23);
+            this.flushbutton.TabIndex = 22;
+            this.flushbutton.Text = "FLUSH";
+            this.flushbutton.UseVisualStyleBackColor = true;
+            this.flushbutton.Click += new System.EventHandler(this.flushbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 366);
+            this.Controls.Add(this.flushbutton);
+            this.Controls.Add(this.connect_button);
             this.Controls.Add(this.Last_Update);
             this.Controls.Add(this.Time_Field);
             this.Controls.Add(this.Health_Button);
@@ -263,7 +277,6 @@
             this.Controls.Add(this.Label_th);
             this.Controls.Add(this.note2);
             this.Controls.Add(this.note1);
-            this.Controls.Add(this.Receive_Button);
             this.Controls.Add(this.Log_Box);
             this.Controls.Add(this.Send_Button);
             this.Controls.Add(this.Label_bige);
@@ -275,6 +288,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "S P C";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,7 +304,6 @@
         private System.Windows.Forms.Label Label_bige;
         private System.Windows.Forms.Button Send_Button;
         private System.Windows.Forms.TextBox Log_Box;
-        private System.Windows.Forms.Button Receive_Button;
         private System.Windows.Forms.Label note1;
         private System.Windows.Forms.Label note2;
         private System.Windows.Forms.Label Label_th;
@@ -303,6 +316,8 @@
         private System.Windows.Forms.Button Health_Button;
         private System.Windows.Forms.TextBox Time_Field;
         private System.Windows.Forms.Label Last_Update;
+        private System.Windows.Forms.Button connect_button;
+        private System.Windows.Forms.Button flushbutton;
     }
 }
 

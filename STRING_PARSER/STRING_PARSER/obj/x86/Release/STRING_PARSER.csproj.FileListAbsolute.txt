@@ -5,3 +5,14 @@ C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STR
 C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Release\STRING_PARSER.csproj.GenerateResource.Cache
 C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Release\STRING_PARSER.exe
 C:\Users\246 Bangur Park\Documents\Visual Studio 2010\Projects\STRING_PARSER\STRING_PARSER\obj\x86\Release\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Release\STRING_PARSER.exe.manifest
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Release\STRING_PARSER.application
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Release\STRING_PARSER.exe
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\bin\Release\STRING_PARSER.pdb
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\WindowsFormsApplication1.Form1.resources
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\STRING_PARSER.csproj.GenerateResource.Cache
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\STRING_PARSER.exe.manifest
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\STRING_PARSER.application
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\STRING_PARSER.exe
+C:\Users\246 Bangur Park\Desktop\LATEST\stale\obj\x86\Release\STRING_PARSER.pdb
