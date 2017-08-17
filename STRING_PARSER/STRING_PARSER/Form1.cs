@@ -57,10 +57,18 @@ namespace WindowsFormsApplication1
                 return (char)(dec + 48);
             }
             else if (dec >= 10 && dec <= 15)
-                return (char)(dec - 10 + 65);
+                return (char)(dec - 10 + 97);
             else
-                return 'F';
+                return 'f';
         } // int2hex
+
+        string gettime(int seconds)
+        {
+            int min = seconds / 60;
+            seconds = seconds % 60;
+            string timestr = min.ToString("00") + ":" + seconds.ToString("00");
+            return timestr;
+        }
 
         public bool writeport(char[] data, int len)
         {
@@ -96,7 +104,7 @@ namespace WindowsFormsApplication1
                 {
                     data[i] = temp[i - 1];
                 }
-                while (i < 7) //if 5 chars aren't complete append extra '0's
+                while (i < 6) //if 5 chars aren't complete append extra '0's
                 {
                     data[i] = '0';
                     i++;
@@ -112,7 +120,7 @@ namespace WindowsFormsApplication1
                     j++;
                 }
 
-                for (int k = j; k < 17 + j; k++) //all 19 chars in the middle need to be '0's
+                for (int k = j; k < 18 + j; k++) //all 19 chars in the middle need to be '0's
                     data[k] = '0';
 
                 uint chkval = checksum(data);
@@ -190,6 +198,10 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show(ex.ToString());
                 }
+
+                var CurDate= DateTime.Now;
+                Time_Field.Text = CurDate.Hour.ToString() + " : " + CurDate.Minute.ToString() + " : " + CurDate.Millisecond.ToString();
+
             }
             else
             {
@@ -292,15 +304,17 @@ namespace WindowsFormsApplication1
 
                 if ((new_result2[0] == result1[30] && new_result2[1] == result1[31])) //checksum validation
                 {
-                    int param1 = int.Parse(idata1.Substring(13, 3));
-                    int param2 = int.Parse(idata1.Substring(13, 3));
-                    int param3 = int.Parse(idata1.Substring(13, 3));
-                    int param4 = int.Parse(idata1.Substring(13, 3));
+                    int timh = int.Parse(idata1.Substring(1, 10));
+                    int param1 = int.Parse(idata1.Substring(11, 3));
+                    int param2 = int.Parse(idata1.Substring(14, 3));
+                    int param3 = int.Parse(idata1.Substring(17, 3));
+                    int param4 = int.Parse(idata1.Substring(20, 3));
 
-                    Health_Box.Text += (param1.ToString() + " ");
-                    Health_Box.Text += (param2.ToString() + " ");
-                    Health_Box.Text += (param3.ToString() + " ");
-                    Health_Box.Text += (param4.ToString() + " ");
+                    Health_Box.Text += (gettime(timh) + " - ");
+                    Health_Box.Text += (param1.ToString("000") + ", ");
+                    Health_Box.Text += (param2.ToString("000") + ", ");
+                    Health_Box.Text += (param3.ToString("000") + ", ");
+                    Health_Box.Text += (param4.ToString("000") + " \r\n");
 
 
                 }
